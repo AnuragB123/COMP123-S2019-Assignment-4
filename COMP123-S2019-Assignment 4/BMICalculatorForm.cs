@@ -24,8 +24,5 @@ namespace COMP123_S2019_Assignment_4
         {
             InitializeComponent();
         }
-
-
-        
     }
 }
