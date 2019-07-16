@@ -17,6 +17,8 @@ namespace COMP123_S2019_Assignment_4
         public float outputValue { get; set; }
         public bool decimalExists { get; set; }
 
+        public TextBox ActiveTextbox { get; set; }
+
         /// <summary>
         /// This is the constructor for the CalculatorForm
         /// </summary>
@@ -35,8 +37,11 @@ namespace COMP123_S2019_Assignment_4
             clearKeyNumberPad();
             NumberPadLayoutPanel.Visible = false;
             CalculateBMIButton.Enabled = false;
-        }
+            BMIProgressBar.Visible = false;
+            Size = new Size(320, 480);
 
+        }
+        
         /// <summary>
         /// This method shows what happens when the number pad is cleared
         /// </summary>
@@ -53,16 +58,31 @@ namespace COMP123_S2019_Assignment_4
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UserInputTextbox_Click(object sender, EventArgs e)
+        private void ActiveLabel_Click(object sender, EventArgs e)
         {
             if (ImperialRadioButton.Checked || MetricRadioButton.Checked)
             {
                 NumberPadLayoutPanel.Visible = true;
             }
-            else
+            
+
+            if (ActiveTextbox != null)
             {
-                MessageBox.Show("Metric Units Must be Selected");
+                ActiveTextbox.BackColor = Color.Black;
+                ActiveTextbox = null;
             }
+
+            ActiveTextbox = sender as TextBox;
+
+            ActiveTextbox.BackColor = Color.LightBlue;
+
+            if (ActiveTextbox.Text != "0")
+            {
+                ResultLabel.Text = ActiveTextbox.Text;
+                outputString = ActiveTextbox.Text;
+            }
+
+
         }
 
         /// <summary>
@@ -139,8 +159,11 @@ namespace COMP123_S2019_Assignment_4
             {
                 outputValue = 0.1f;
             }
-            MyWeightTextBox.Text = outputValue.ToString();
+            outputValue = float.Parse(outputString);
+            ActiveTextbox.Text = outputValue.ToString();
             clearKeyNumberPad();
+            ActiveTextbox.BackColor = Color.Black;
+            ActiveTextbox = null;
             NumberPadLayoutPanel.Visible = false;
         }
 
@@ -163,8 +186,11 @@ namespace COMP123_S2019_Assignment_4
             {
                 outputValue = 0.1f;
             }
-            MyHeightTextBox.Text = outputValue.ToString();
+            outputValue = float.Parse(outputString);
+            ActiveTextbox.Text = outputValue.ToString();
             clearKeyNumberPad();
+            ActiveTextbox.BackColor = Color.Black;
+            ActiveTextbox = null;
             NumberPadLayoutPanel.Visible = false;
         }
 
@@ -203,20 +229,28 @@ namespace COMP123_S2019_Assignment_4
             double BMIValue;
 
             BMIValue = Convert.ToDouble(BMITextBox.Text);
-
+            BMIProgressBar.Visible = true;
             if (BMIValue < 18.5)
             {
                 BMIResultTextBox.Text = "You are Underweight";
+                BMIProgressBar.Minimum = 0;
+                BMIProgressBar.Maximum = 100;
+                BMIProgressBar.Value = 25;
+                
             }
 
             else if (BMIValue >= 18.5 && BMIValue <= 24.9)
             {
                 BMIResultTextBox.Text = "You are Normal";
+                
+
             }
 
             else if (BMIValue >= 25 && BMIValue <= 29.8)
             {
                 BMIResultTextBox.Text = "You are Overwight";
+               
+
             }
 
             else if (BMIValue >= 30)
