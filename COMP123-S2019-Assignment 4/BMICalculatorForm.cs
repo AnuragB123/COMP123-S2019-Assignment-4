@@ -16,7 +16,6 @@ namespace COMP123_S2019_Assignment_4
         public string outputString { get; set; }
         public float outputValue { get; set; }
         public bool decimalExists { get; set; }
-
         public TextBox ActiveTextbox { get; set; }
 
         /// <summary>
@@ -37,24 +36,11 @@ namespace COMP123_S2019_Assignment_4
             clearKeyNumberPad();
             NumberPadLayoutPanel.Visible = false;
             CalculateBMIButton.Enabled = false;
-            BMIProgressBar.Visible = false;
             Size = new Size(320, 480);
-
-        }
-        
-        /// <summary>
-        /// This method shows what happens when the number pad is cleared
-        /// </summary>
-        private void clearKeyNumberPad()
-        {
-            ResultLabel.Text = "0";
-            outputString = "0";
-            outputValue = 0.0f;
-            decimalExists = false;
         }
 
         /// <summary>
-        /// This event is when the My Height Textbox is clicked to be inpputted 
+        /// This event is when the either My Height TextBox or My Weight TextBox are clicked and what happens then
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,25 +50,18 @@ namespace COMP123_S2019_Assignment_4
             {
                 NumberPadLayoutPanel.Visible = true;
             }
-            
-
             if (ActiveTextbox != null)
             {
                 ActiveTextbox.BackColor = Color.Black;
                 ActiveTextbox = null;
             }
-
             ActiveTextbox = sender as TextBox;
-
             ActiveTextbox.BackColor = Color.LightBlue;
-
             if (ActiveTextbox.Text != "0")
             {
                 ResultLabel.Text = ActiveTextbox.Text;
                 outputString = ActiveTextbox.Text;
             }
-
-
         }
 
         /// <summary>
@@ -95,9 +74,7 @@ namespace COMP123_S2019_Assignment_4
             Button TheButton = sender as Button;
             var tag = TheButton.Tag.ToString();
             int numericValue = 0;
-
             bool numericResult = int.TryParse(tag, out numericValue);
-
             if (numericResult)
             {
                 int maxSize = (decimalExists) ? 5 : 3;
@@ -112,7 +89,6 @@ namespace COMP123_S2019_Assignment_4
                         outputString += tag;
                     }
                 }
-
                 ResultLabel.Text = outputString;
             }
             else
@@ -123,15 +99,7 @@ namespace COMP123_S2019_Assignment_4
                         removeLastCharacter();
                         break;
                     case "done":
-                        if (MyHeightTextBox.Text == "0")
-                        {
-                            myHeightFinalizeOutput();
-                        }
-
-                        else if (MyWeightTextBox.Text == "0")
-                        {
-                            myWeightFinalizeOutput();
-                        }
+                        FinalizeOutput();
                         if (Convert.ToDouble(MyHeightTextBox.Text) > 0 && Convert.ToDouble(MyWeightTextBox.Text) > 0)
                         {
                             CalculateBMIButton.Enabled = true;
@@ -145,55 +113,21 @@ namespace COMP123_S2019_Assignment_4
                         break;
                 }
             }
-            
-
         }
 
-        private void myWeightFinalizeOutput()
+        /// <summary>
+        /// This is the event when the Calculate BMI Button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculateBMIButton_Click(object sender, EventArgs e)
         {
-            outputValue = float.Parse(outputString);
-
-            outputValue = (float)(Math.Round(outputValue, 1));
-
-            if (outputValue < 0.1f)
-            {
-                outputValue = 0.1f;
-            }
-            outputValue = float.Parse(outputString);
-            ActiveTextbox.Text = outputValue.ToString();
-            clearKeyNumberPad();
-            ActiveTextbox.BackColor = Color.Black;
-            ActiveTextbox = null;
-            NumberPadLayoutPanel.Visible = false;
+            BMICalculationsAndMessages();
         }
 
-        private void addDecimal()
-        {
-            if (!decimalExists)
-            {
-                outputString += ".";
-                decimalExists = true;
-            }
-        }
-
-        private void myHeightFinalizeOutput()
-        {
-            outputValue = float.Parse(outputString);
-
-            outputValue = (float)(Math.Round(outputValue, 1));
-
-            if (outputValue < 0.1f)
-            {
-                outputValue = 0.1f;
-            }
-            outputValue = float.Parse(outputString);
-            ActiveTextbox.Text = outputValue.ToString();
-            clearKeyNumberPad();
-            ActiveTextbox.BackColor = Color.Black;
-            ActiveTextbox = null;
-            NumberPadLayoutPanel.Visible = false;
-        }
-
+        /// <summary>
+        /// This removes the last character
+        /// </summary>
         private void removeLastCharacter()
         {
             var lastChar = outputString.Substring(outputString.Length - 1);
@@ -211,46 +145,88 @@ namespace COMP123_S2019_Assignment_4
             ResultLabel.Text = outputString;
         }
 
-        private void CalculateBMIButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This is to finalize the output of the text in the two textboxes
+        /// </summary>
+        private void FinalizeOutput()
         {
+            outputValue = float.Parse(outputString);
 
+            outputValue = (float)(Math.Round(outputValue, 1));
+
+            if (outputValue < 0.1f)
+            {
+                outputValue = 0.1f;
+            }
+            outputValue = float.Parse(outputString);
+            ActiveTextbox.Text = outputValue.ToString();
+            clearKeyNumberPad();
+            ActiveTextbox.BackColor = Color.Black;
+            ActiveTextbox = null;
+            NumberPadLayoutPanel.Visible = false;
+        }
+
+        /// <summary>
+        /// This method shows what happens when the number pad is cleared
+        /// </summary>
+        private void clearKeyNumberPad()
+        {
+            ResultLabel.Text = "0";
+            outputString = "0";
+            outputValue = 0.0f;
+            decimalExists = false;
+        }
+
+        /// <summary>
+        /// This is called when a decimal is needed for inputting the number from the keypad
+        /// </summary>
+        private void addDecimal()
+        {
+            if (!decimalExists)
+            {
+                outputString += ".";
+                decimalExists = true;
+            }
+        }
+
+        /// <summary>
+        /// This method calls other methods that do the BMI Calculations and also determins the message
+        /// </summary>
+        private void BMICalculationsAndMessages()
+        {
             if (ImperialRadioButton.Checked)
             {
-                double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
-                    (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
-                BMITextBox.Text = BMI.ToString("F");
+                //BMI Calculation according to Imperial Units Formula
+                ImperialUnitsBMICalculation();
             }
             else if (MetricRadioButton.Checked)
             {
-                    double BMI = (Convert.ToDouble(MyHeightTextBox.Text)) /
-                        (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
-                    BMITextBox.Text = BMI.ToString("F");
+                //BMI Calculation according to Metric Units Formula
+                MetricUnitsBMICalculation();
             }
-            double BMIValue;
+            //Determines the BMI Message
+            BMIMessage();
+        }
 
-            BMIValue = Convert.ToDouble(BMITextBox.Text);
-            BMIProgressBar.Visible = true;
+        /// <summary>
+        /// This determines the BMI Message to be put
+        /// </summary>
+        private void BMIMessage()
+        {
+            double BMIValue = Convert.ToDouble(BMITextBox.Text);
             if (BMIValue < 18.5)
             {
                 BMIResultTextBox.Text = "You are Underweight";
-                BMIProgressBar.Minimum = 0;
-                BMIProgressBar.Maximum = 100;
-                BMIProgressBar.Value = 25;
-                
             }
 
             else if (BMIValue >= 18.5 && BMIValue <= 24.9)
             {
                 BMIResultTextBox.Text = "You are Normal";
-                
-
             }
 
             else if (BMIValue >= 25 && BMIValue <= 29.8)
             {
                 BMIResultTextBox.Text = "You are Overwight";
-               
-
             }
 
             else if (BMIValue >= 30)
@@ -259,6 +235,24 @@ namespace COMP123_S2019_Assignment_4
             }
         }
 
-        
+        /// <summary>
+        /// This does the calculation in the Metric Units Formula
+        /// </summary>
+        private void MetricUnitsBMICalculation()
+        {
+            double BMI = (Convert.ToDouble(MyHeightTextBox.Text)) /
+                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
+            BMITextBox.Text = BMI.ToString("F");
+        }
+
+        /// <summary>
+        /// This does the calculation in the Imperial Units Formula
+        /// </summary>
+        private void ImperialUnitsBMICalculation()
+        {
+            double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
+                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
+            BMITextBox.Text = BMI.ToString("F");
+        }
     }
 }
