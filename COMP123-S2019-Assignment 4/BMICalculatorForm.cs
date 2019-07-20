@@ -89,6 +89,7 @@ namespace COMP123_S2019_Assignment_4
                         outputString += tag;
                     }
                 }
+
                 ResultLabel.Text = outputString;
             }
             else
@@ -159,7 +160,8 @@ namespace COMP123_S2019_Assignment_4
                 outputValue = 0.1f;
             }
             outputValue = float.Parse(outputString);
-            ActiveTextbox.Text = outputValue.ToString();
+            
+            ActiveTextbox.Text = outputValue.ToString() + "inches";
             clearKeyNumberPad();
             ActiveTextbox.BackColor = Color.Black;
             ActiveTextbox = null;
