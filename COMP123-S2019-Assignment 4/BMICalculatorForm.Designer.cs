@@ -365,7 +365,7 @@
             this.BMITableLayoutPanel.Controls.Add(this.BMILabel, 0, 0);
             this.BMITableLayoutPanel.Controls.Add(this.CalculateBMIButton, 0, 2);
             this.BMITableLayoutPanel.Controls.Add(this.BMITextBox, 2, 0);
-            this.BMITableLayoutPanel.Location = new System.Drawing.Point(-4, 362);
+            this.BMITableLayoutPanel.Location = new System.Drawing.Point(12, 362);
             this.BMITableLayoutPanel.Name = "BMITableLayoutPanel";
             this.BMITableLayoutPanel.RowCount = 4;
             this.BMITableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -373,7 +373,8 @@
             this.BMITableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BMITableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.BMITableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.BMITableLayoutPanel.Size = new System.Drawing.Size(294, 71);
+            this.BMITableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.BMITableLayoutPanel.Size = new System.Drawing.Size(278, 71);
             this.BMITableLayoutPanel.TabIndex = 2;
             // 
             // BMILabel
@@ -390,7 +391,7 @@
             this.BMILabel.Location = new System.Drawing.Point(3, 0);
             this.BMILabel.Name = "BMILabel";
             this.BMITableLayoutPanel.SetRowSpan(this.BMILabel, 2);
-            this.BMILabel.Size = new System.Drawing.Size(140, 34);
+            this.BMILabel.Size = new System.Drawing.Size(132, 34);
             this.BMILabel.TabIndex = 1;
             this.BMILabel.Tag = "BMI";
             this.BMILabel.Text = "BMI:";
@@ -408,7 +409,7 @@
             this.CalculateBMIButton.Location = new System.Drawing.Point(3, 37);
             this.CalculateBMIButton.Name = "CalculateBMIButton";
             this.BMITableLayoutPanel.SetRowSpan(this.CalculateBMIButton, 2);
-            this.CalculateBMIButton.Size = new System.Drawing.Size(288, 31);
+            this.CalculateBMIButton.Size = new System.Drawing.Size(272, 31);
             this.CalculateBMIButton.TabIndex = 0;
             this.CalculateBMIButton.Tag = "Calculate BMI";
             this.CalculateBMIButton.Text = "Calculate BMI";
@@ -424,10 +425,10 @@
             this.BMITableLayoutPanel.SetColumnSpan(this.BMITextBox, 2);
             this.BMITextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BMITextBox.ForeColor = System.Drawing.Color.White;
-            this.BMITextBox.Location = new System.Drawing.Point(149, 3);
+            this.BMITextBox.Location = new System.Drawing.Point(141, 3);
             this.BMITextBox.Name = "BMITextBox";
             this.BMITableLayoutPanel.SetRowSpan(this.BMITextBox, 2);
-            this.BMITextBox.Size = new System.Drawing.Size(142, 45);
+            this.BMITextBox.Size = new System.Drawing.Size(134, 45);
             this.BMITextBox.TabIndex = 2;
             this.BMITextBox.Text = "0";
             this.BMITextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -591,6 +592,7 @@
             this.Name = "BMICalculatorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BMI Calculator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BMICalculatorForm_FormClosing);
             this.Load += new System.EventHandler(this.BMICalculatorForm_Load);
             this.NumberPadLayoutPanel.ResumeLayout(false);
             this.NumberPadLayoutPanel.PerformLayout();

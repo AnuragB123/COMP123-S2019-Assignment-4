@@ -46,17 +46,22 @@ namespace COMP123_S2019_Assignment_4
         /// <param name="e"></param>
         private void ActiveLabel_Click(object sender, EventArgs e)
         {
-            if (ImperialRadioButton.Checked || MetricRadioButton.Checked)
-            {
-                NumberPadLayoutPanel.Visible = true;
-            }
             if (ActiveTextbox != null)
             {
                 ActiveTextbox.BackColor = Color.Black;
                 ActiveTextbox = null;
             }
+            if (ImperialRadioButton.Checked || MetricRadioButton.Checked)
+            {
+                NumberPadLayoutPanel.Visible = true;
+            }
             ActiveTextbox = sender as TextBox;
             ActiveTextbox.BackColor = Color.LightBlue;
+            if (!ImperialRadioButton.Checked && !MetricRadioButton.Checked)
+            {
+                MessageBox.Show("Metric Units must be selected");
+                ActiveTextbox.BackColor = Color.Black;
+            }
             if (ActiveTextbox.Text != "0")
             {
                 ResultLabel.Text = ActiveTextbox.Text;
@@ -160,8 +165,7 @@ namespace COMP123_S2019_Assignment_4
                 outputValue = 0.1f;
             }
             outputValue = float.Parse(outputString);
-            
-            ActiveTextbox.Text = outputValue.ToString() + "inches";
+            ActiveTextbox.Text = outputValue.ToString();
             clearKeyNumberPad();
             ActiveTextbox.BackColor = Color.Black;
             ActiveTextbox = null;
@@ -255,6 +259,11 @@ namespace COMP123_S2019_Assignment_4
             double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
                                 (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
             BMITextBox.Text = BMI.ToString("F");
+        }
+
+        private void BMICalculatorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

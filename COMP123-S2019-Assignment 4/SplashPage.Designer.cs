@@ -1,6 +1,6 @@
 ﻿namespace COMP123_S2019_Assignment_4
 {
-    partial class SplashPage
+    partial class SplashPageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.WelcomeLabel = new System.Windows.Forms.Label();
+            this.SplashTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // SplashPage
+            // WelcomeLabel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.WelcomeLabel.Location = new System.Drawing.Point(17, 185);
+            this.WelcomeLabel.Name = "WelcomeLabel";
+            this.WelcomeLabel.Size = new System.Drawing.Size(273, 86);
+            this.WelcomeLabel.TabIndex = 0;
+            this.WelcomeLabel.Text = "Welcome to The BMI Calculator!";
+            this.WelcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SplashTimer
+            // 
+            this.SplashTimer.Interval = 3000;
+            this.SplashTimer.Tick += new System.EventHandler(this.SplashTimer_Tick);
+            // 
+            // SplashPageForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 38F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(302, 433);
-            this.Name = "SplashPage";
+            this.ControlBox = false;
+            this.Controls.Add(this.WelcomeLabel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.MinimizeBox = false;
+            this.Name = "SplashPageForm";
+            this.Opacity = 0.8D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splash Page";
+            this.Load += new System.EventHandler(this.SplashPageForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label WelcomeLabel;
+        private System.Windows.Forms.Timer SplashTimer;
     }
 }

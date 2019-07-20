@@ -10,11 +10,23 @@ using System.Windows.Forms;
 
 namespace COMP123_S2019_Assignment_4
 {
-    public partial class SplashPage : Form
+    public partial class SplashPageForm : Form
     {
-        public SplashPage()
+        public SplashPageForm()
         {
             InitializeComponent();
         }
+        private void SplashPageForm_Load(object sender, EventArgs e)
+        {
+            SplashTimer.Enabled = true;
+        }
+        private void SplashTimer_Tick(object sender, EventArgs e)
+        {
+            SplashTimer.Enabled = false;
+            Program.Forms[FormName.BMI_CALCULATOR_FORM].Show();
+            this.Hide();
+        }
+
+        
     }
 }
