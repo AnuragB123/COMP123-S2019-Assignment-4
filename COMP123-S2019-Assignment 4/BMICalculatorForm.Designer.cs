@@ -438,13 +438,13 @@
             this.InformationTableLayoutPanel.ColumnCount = 2;
             this.InformationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.InformationTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.InformationTableLayoutPanel.Controls.Add(this.MyWeightTextBox, 1, 4);
             this.InformationTableLayoutPanel.Controls.Add(this.MetricRadioButton, 0, 2);
             this.InformationTableLayoutPanel.Controls.Add(this.BMIResultTextBox, 0, 0);
             this.InformationTableLayoutPanel.Controls.Add(this.ImperialRadioButton, 0, 1);
             this.InformationTableLayoutPanel.Controls.Add(this.MyHeightLabel, 0, 3);
             this.InformationTableLayoutPanel.Controls.Add(this.MyWeightLabel, 0, 4);
             this.InformationTableLayoutPanel.Controls.Add(this.MyHeightTextBox, 1, 3);
+            this.InformationTableLayoutPanel.Controls.Add(this.MyWeightTextBox, 1, 4);
             this.InformationTableLayoutPanel.Location = new System.Drawing.Point(12, 4);
             this.InformationTableLayoutPanel.Name = "InformationTableLayoutPanel";
             this.InformationTableLayoutPanel.RowCount = 5;

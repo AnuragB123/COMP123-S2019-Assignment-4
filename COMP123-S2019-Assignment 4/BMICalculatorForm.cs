@@ -246,6 +246,7 @@ namespace COMP123_S2019_Assignment_4
         /// </summary>
         private void MetricUnitsBMICalculation()
         {
+            MessageBox.Show("Weight in pounds and Height in inches");
             double BMI = (Convert.ToDouble(MyHeightTextBox.Text)) /
                                 (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
             BMITextBox.Text = BMI.ToString("F");
@@ -256,6 +257,7 @@ namespace COMP123_S2019_Assignment_4
         /// </summary>
         private void ImperialUnitsBMICalculation()
         {
+            MessageBox.Show("Weight in Kilograms and Height in Meters");
             double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
                                 (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
             BMITextBox.Text = BMI.ToString("F");
