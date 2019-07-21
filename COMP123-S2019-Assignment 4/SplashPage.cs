@@ -12,14 +12,29 @@ namespace COMP123_S2019_Assignment_4
 {
     public partial class SplashPageForm : Form
     {
+        /// <summary>
+        /// This is the constructor of Splash Page Form
+        /// </summary>
         public SplashPageForm()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// This is the event handler when the Splash Page loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SplashPageForm_Load(object sender, EventArgs e)
         {
             SplashTimer.Enabled = true;
         }
+
+        /// <summary>
+        /// This is the event handler for when the Timer starts it ticks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SplashTimer_Tick(object sender, EventArgs e)
         {
             SplashTimer.Enabled = false;

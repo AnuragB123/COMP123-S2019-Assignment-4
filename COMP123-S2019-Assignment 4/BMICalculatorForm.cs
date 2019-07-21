@@ -33,6 +33,7 @@ namespace COMP123_S2019_Assignment_4
         /// <param name="e"></param>
         private void BMICalculatorForm_Load(object sender, EventArgs e)
         {
+            //Calls on clearKeyNumberPad() method which clears the key number pad
             clearKeyNumberPad();
             NumberPadLayoutPanel.Visible = false;
             CalculateBMIButton.Enabled = false;
@@ -102,9 +103,11 @@ namespace COMP123_S2019_Assignment_4
                 switch (tag)
                 {
                     case "back":
+                        //Calls on removeLastCharacter() method, which removes the last number inputted into number key pad
                         removeLastCharacter();
                         break;
                     case "done":
+                        //Calls on FinalizeOutput() which finalizes the output
                         FinalizeOutput();
                         if (Convert.ToDouble(MyHeightTextBox.Text) > 0 && Convert.ToDouble(MyWeightTextBox.Text) > 0)
                         {
@@ -112,9 +115,11 @@ namespace COMP123_S2019_Assignment_4
                         }
                         break;
                     case "clear":
+                        //Calls on clearKeyNumberPad() method, which clears the ley number pad
                         clearKeyNumberPad();
                         break;
                     case "decimal":
+                        //Calls on addDecimal(), which adds decimal to the output
                         addDecimal();
                         break;
                 }
@@ -128,7 +133,19 @@ namespace COMP123_S2019_Assignment_4
         /// <param name="e"></param>
         private void CalculateBMIButton_Click(object sender, EventArgs e)
         {
+            //Calls on BMICalculationsAndMessages(), which does the calculations to figure the BMI and the BMI Messages
             BMICalculationsAndMessages();
+        }
+
+        /// <summary>
+        /// This method shows what happens when the number pad is cleared
+        /// </summary>
+        private void clearKeyNumberPad()
+        {
+            ResultLabel.Text = "0";
+            outputString = "0";
+            outputValue = 0.0f;
+            decimalExists = false;
         }
 
         /// <summary>
@@ -147,7 +164,6 @@ namespace COMP123_S2019_Assignment_4
             {
                 outputString = "0";
             }
-
             ResultLabel.Text = outputString;
         }
 
@@ -170,17 +186,6 @@ namespace COMP123_S2019_Assignment_4
             ActiveTextbox.BackColor = Color.Black;
             ActiveTextbox = null;
             NumberPadLayoutPanel.Visible = false;
-        }
-
-        /// <summary>
-        /// This method shows what happens when the number pad is cleared
-        /// </summary>
-        private void clearKeyNumberPad()
-        {
-            ResultLabel.Text = "0";
-            outputString = "0";
-            outputValue = 0.0f;
-            decimalExists = false;
         }
 
         /// <summary>
@@ -215,6 +220,28 @@ namespace COMP123_S2019_Assignment_4
         }
 
         /// <summary>
+        /// This does the calculation in the Imperial Units Formula
+        /// </summary>
+        private void ImperialUnitsBMICalculation()
+        {
+            MessageBox.Show("Weight in Kilograms and Height in Meters");
+            double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
+                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
+            BMITextBox.Text = BMI.ToString("F");
+        }
+
+        /// <summary>
+        /// This does the calculation in the Metric Units Formula
+        /// </summary>
+        private void MetricUnitsBMICalculation()
+        {
+            MessageBox.Show("Weight in pounds and Height in inches");
+            double BMI = (Convert.ToDouble(MyHeightTextBox.Text)) /
+                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
+            BMITextBox.Text = BMI.ToString("F");
+        }
+
+        /// <summary>
         /// This determines the BMI Message to be put
         /// </summary>
         private void BMIMessage()
@@ -242,27 +269,10 @@ namespace COMP123_S2019_Assignment_4
         }
 
         /// <summary>
-        /// This does the calculation in the Metric Units Formula
+        /// This is the event handler when the form is closed
         /// </summary>
-        private void MetricUnitsBMICalculation()
-        {
-            MessageBox.Show("Weight in pounds and Height in inches");
-            double BMI = (Convert.ToDouble(MyHeightTextBox.Text)) /
-                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
-            BMITextBox.Text = BMI.ToString("F");
-        }
-
-        /// <summary>
-        /// This does the calculation in the Imperial Units Formula
-        /// </summary>
-        private void ImperialUnitsBMICalculation()
-        {
-            MessageBox.Show("Weight in Kilograms and Height in Meters");
-            double BMI = (Convert.ToDouble(MyWeightTextBox.Text) * 703) /
-                                (Convert.ToDouble(MyHeightTextBox.Text) * Convert.ToDouble(MyHeightTextBox.Text));
-            BMITextBox.Text = BMI.ToString("F");
-        }
-
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BMICalculatorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
