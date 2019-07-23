@@ -50,13 +50,13 @@
             this.CalculateBMIButton = new System.Windows.Forms.Button();
             this.BMITextBox = new System.Windows.Forms.TextBox();
             this.InformationTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.MyWeightTextBox = new System.Windows.Forms.TextBox();
             this.MetricRadioButton = new System.Windows.Forms.RadioButton();
             this.BMIResultTextBox = new System.Windows.Forms.TextBox();
             this.ImperialRadioButton = new System.Windows.Forms.RadioButton();
             this.MyHeightLabel = new System.Windows.Forms.Label();
             this.MyWeightLabel = new System.Windows.Forms.Label();
             this.MyHeightTextBox = new System.Windows.Forms.TextBox();
+            this.MyWeightTextBox = new System.Windows.Forms.TextBox();
             this.NumberPadLayoutPanel.SuspendLayout();
             this.BMITableLayoutPanel.SuspendLayout();
             this.InformationTableLayoutPanel.SuspendLayout();
@@ -456,23 +456,6 @@
             this.InformationTableLayoutPanel.Size = new System.Drawing.Size(278, 205);
             this.InformationTableLayoutPanel.TabIndex = 3;
             // 
-            // MyWeightTextBox
-            // 
-            this.MyWeightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MyWeightTextBox.BackColor = System.Drawing.Color.Black;
-            this.MyWeightTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MyWeightTextBox.ForeColor = System.Drawing.Color.White;
-            this.MyWeightTextBox.Location = new System.Drawing.Point(142, 167);
-            this.MyWeightTextBox.Name = "MyWeightTextBox";
-            this.MyWeightTextBox.Size = new System.Drawing.Size(133, 45);
-            this.MyWeightTextBox.TabIndex = 6;
-            this.MyWeightTextBox.Tag = "My Height";
-            this.MyWeightTextBox.Text = "0";
-            this.MyWeightTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MyWeightTextBox.Click += new System.EventHandler(this.ActiveLabel_Click);
-            // 
             // MetricRadioButton
             // 
             this.MetricRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -576,6 +559,23 @@
             this.MyHeightTextBox.Text = "0";
             this.MyHeightTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.MyHeightTextBox.Click += new System.EventHandler(this.ActiveLabel_Click);
+            // 
+            // MyWeightTextBox
+            // 
+            this.MyWeightTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MyWeightTextBox.BackColor = System.Drawing.Color.Black;
+            this.MyWeightTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MyWeightTextBox.ForeColor = System.Drawing.Color.White;
+            this.MyWeightTextBox.Location = new System.Drawing.Point(142, 167);
+            this.MyWeightTextBox.Name = "MyWeightTextBox";
+            this.MyWeightTextBox.Size = new System.Drawing.Size(133, 45);
+            this.MyWeightTextBox.TabIndex = 6;
+            this.MyWeightTextBox.Tag = "My Height";
+            this.MyWeightTextBox.Text = "0";
+            this.MyWeightTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.MyWeightTextBox.Click += new System.EventHandler(this.ActiveLabel_Click);
             // 
             // BMICalculatorForm
             // 
