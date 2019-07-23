@@ -22,6 +22,7 @@ using System.Windows.Forms;
 /// 6) Added the Splash Screen and Programmed the Splash Screen to show for 3 seconds
 /// 7) Made Final Fixes to the whole programming of the application and documentations
 /// </summary>
+/// 
 namespace COMP123_S2019_Assignment_4
 {
     public partial class SplashPageForm : Form
